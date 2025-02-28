@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/words/new" element={<CreateWordPage />} />
-        <Route path="/words/id" element={<WordPage />} />
+        <Route path="/words/:wordId" element={<WordPage />} />
         <Route path="/words/id/edit" element={<EditWordPage />} />
       </Routes>
 
