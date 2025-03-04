@@ -12,7 +12,7 @@ export default function EditWordPage() {
   const [word, setWord] = useState("");
   const [meaning, setMeaning] = useState("");
   const [translation, setTransalation] = useState("");
-  const [sentences, setSentences] = useState("");
+  const [sentences, setSentences] = useState([]);
   const [language, setLanguage] = useState("English");
 
   useEffect(() => {
@@ -191,7 +191,7 @@ export default function EditWordPage() {
           type="submit"
           className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#c07c53] px-8 py-3 text-base font-semibold text-[#efe8db] hover:bg-[#D68C60] focus:outline-none focus:ring-2 focus:ring-[#c07c53] focus:ring-offset-2"
         >
-          editar palabra
+          Guardar
         </button>
 
         <button

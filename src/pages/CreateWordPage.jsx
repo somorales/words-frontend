@@ -171,7 +171,7 @@ export default function CreateWordPage() {
           type="submit"
           className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#c07c53] px-8 py-3 text-base font-semibold text-[#efe8db] hover:bg-[#D68C60] focus:outline-none focus:ring-2 focus:ring-[#c07c53] focus:ring-offset-2"
         >
-          Crear palabra
+          Guardar
         </button>
 
         <button

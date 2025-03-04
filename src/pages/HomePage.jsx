@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import service from "../services/config.js";
+import TextToSpeech from "../components/TextToSpeech.jsx";
 
 export default function HomePage() {
   const [allWords, setAllWords] = useState([]);
@@ -38,13 +39,11 @@ export default function HomePage() {
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {allWords.map((word) => (
             <Link key={word._id} to={`/words/${word._id}`}>
-              <div className="group relative">
+              <div>
                 <div className="mt-4 flex justify-between">
                   <div>
-                    <h3 className="text-base text-[#000000]">
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {word.word}
-                    </h3>
+                    <h3 className="text-base text-[#000000]">{word.word}</h3>
+                    <TextToSpeech text={word.word} />
                     <p className="mt-1 text-sm text-gray-800">{word.meaning}</p>
                   </div>
                 </div>
