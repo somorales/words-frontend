@@ -17,10 +17,8 @@ export default function WordPage() {
     service
       .get(`/words/${params.wordId}`)
       .then((response) => {
-        console.log(response.data);
         setword(response.data);
         setAllSentences(response.data.sentences);
-        console.log(response.data.sentences);
       })
       .catch((err) => {
         console.log(err);
