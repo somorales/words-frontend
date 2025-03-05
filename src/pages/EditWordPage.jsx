@@ -22,7 +22,7 @@ export default function EditWordPage() {
         setWord(response.data.word);
         setMeaning(response.data.meaning);
         setTransalation(response.data.translation);
-        setSentences(response.data.sentencesen);
+        setSentences(response.data.sentences);
         setLanguage(response.data.language);
       })
       .catch((err) => {
@@ -44,9 +44,13 @@ export default function EditWordPage() {
     let value = evento.target.value;
     setTransalation(value);
   };
-  const handleSentencesChange = (evento) => {
-    let value = evento.target.value;
-    setSentences(value);
+  const handleSentencesChange = (index, event) => {
+    const newSentences = [...sentences];
+    newSentences[index] = event.target.value;
+    setSentences(newSentences);
+  };
+  const addSentence = () => {
+    setSentences([...sentences, ""]);
   };
 
   const handleSubmit = async (e) => {
@@ -170,21 +174,32 @@ export default function EditWordPage() {
               htmlFor="name"
               className="block text-sm font-medium leading-6 text-[#000000]"
             >
-              Sentences
+              Sentences (Requerido)
             </label>
           </div>
-          <div className="mt-2">
-            <textarea
-              onChange={handleSentencesChange}
-              value={sentences}
-              placeholder="Oraciones"
-              id="Oraciones"
-              name="Oraciones"
-              type="text"
-              required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#c07c53] sm:text-sm sm:leading-6"
-            ></textarea>
+          <div className="space-y-2">
+            {sentences.map((sentence, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={sentence}
+                  onChange={(event) => handleSentencesChange(index, event)}
+                  placeholder="Escribe una oración"
+                  id={`sentence-${index}`}
+                  name={`sentence-${index}`}
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#c07c53] sm:text-sm sm:leading-6"
+                />
+              </div>
+            ))}
           </div>
+
+          <button
+            onClick={addSentence}
+            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#c07c53] px-8 py-3 text-base font-semibold text-[#efe8db] hover:bg-[#D68C60] focus:outline-none focus:ring-2 focus:ring-[#c07c53] focus:ring-offset-2"
+          >
+            agregar oración
+          </button>
         </div>
 
         <button
