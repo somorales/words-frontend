@@ -44,12 +44,37 @@ export default function EditWordPage() {
     let value = evento.target.value;
     setTransalation(value);
   };
+
+  /**
+   * Esta función se encarga de actualizar el estado `sentences`, modificando una oración.
+   *
+   * @param {Number} index El índice de la oración en el array `sentences`.
+   * @param {EventTarget} event Elemento input que se editó y está asociado a la oración editada.
+   */
   const handleSentencesChange = (index, event) => {
     const newSentences = [...sentences];
     newSentences[index] = event.target.value;
     setSentences(newSentences);
   };
+
+  /**
+   * Agrega una oración "vacía" al array `sentences`, esto generará un elemento input
+   * vacío que permitirá al usuario escribir su oración.
+   */
   const addSentence = () => {
+    /**
+     * [...sentences, ""] es lo mismo que:
+     *
+     * // copiar la lista de oraciones
+     * let sentencesCopy = [...sentences];
+     *
+     * // agregar una cadena vacía a la lista de oraciones
+     * sentencesCopy.push("")
+     *
+     * // actualizar el estado `sentences`
+     * setSentences(sentencesCopy)
+     *
+     */
     setSentences([...sentences, ""]);
   };
 
@@ -60,7 +85,7 @@ export default function EditWordPage() {
       word === "" ||
       meaning === "" ||
       translation === "" ||
-      sentences === "" ||
+      sentences.length === 0 ||
       language === ""
     ) {
       return;
