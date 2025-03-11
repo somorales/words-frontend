@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import service from "../services/config.js";
 import TextToSpeech from "../components/TextToSpeech.jsx";
+import SearchForm from "../components/SearchForm.jsx";
 
 export default function HomePage() {
   const [allWords, setAllWords] = useState([]);
@@ -19,6 +20,17 @@ export default function HomePage() {
       });
   }, []);
 
+  const handleSearchWord = (text) => {
+    service
+      .get(`/words?word=${text}`)
+      .then((response) => {
+        setAllWords(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
       <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -26,6 +38,13 @@ export default function HomePage() {
           <h1 className="text-3xl text-[#2a3a2d]	font-semibold italic pb-4">
             Learn words, write sentences, and improve your pronunciation
           </h1>
+        </div>
+
+        <div className="w-full lg:w-96">
+          <SearchForm
+            placeholder="Buscar Productos..."
+            onSearch={handleSearchWord}
+          />
         </div>
 
         <div>
