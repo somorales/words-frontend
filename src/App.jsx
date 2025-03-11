@@ -8,7 +8,6 @@ import Signup from "./pages/auth/Signup";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/About";
 import CreateWordPage from "./pages/CreateWordPage";
 import WordPage from "./pages/WordPage";
 import EditWordPage from "./pages/EditWordPage";
@@ -24,24 +23,27 @@ function App() {
   console.log(location.pathname);
   return (
     <>
+      {location.pathname !== `/signup` && location.pathname !== `/login` && (
+        <NavBar />
+      )}
       {errorMessage && (
         <ToastError
           errorMessage={errorMessage}
           setErrorMessage={setErrorMessage}
         />
       )}
-      <NavBar />
+
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
         <Route path="/words/new" element={<CreateWordPage />} />
         <Route path="/words/:wordId" element={<WordPage />} />
         <Route path="/words/:wordId/edit" element={<EditWordPage />} />
       </Routes>
-
-      <Footer />
+      {location.pathname !== `/signup` && location.pathname !== `/login` && (
+        <Footer />
+      )}
     </>
   );
 }

@@ -1,17 +1,24 @@
 import service from "../../services/config.js";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context.jsx";
 import { Link } from "react-router-dom";
 import { ToastContext } from "../../context/toast.context.jsx";
+import Loading from "../../components/Loading.jsx";
 
 function LoginPage() {
   const navigate = useNavigate();
   const { authenticateUser } = useContext(AuthContext);
   const { setErrorMessage } = useContext(ToastContext);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      //setIsLoading(false);
+    }, 2000);
+  }, []);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -50,9 +57,13 @@ function LoginPage() {
     }
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-[#4D3E7F]">
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleLogin} method="POST" className="space-y-6">
             <div>
