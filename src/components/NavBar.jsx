@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import user from "../assets/images/user.png";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
 export default function NavBar() {
-  const { isLoggedIn, authenticateUser } = useContext(AuthContext);
+  const { isLoggedIn, authenticateUser, loggerUserName } =
+    useContext(AuthContext);
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -15,31 +17,17 @@ export default function NavBar() {
   };
   return (
     <header>
-      <nav className="bg-white">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
+      <nav className="bg-white px-8 py-8 flex justify-between items-center">
+        <div className="flex items-center">
           <Link to="/">
             <span className="sr-only">logo</span>
-            <img alt="" src={logo} className="h-8 xl:h-28 w-auto" />
+            <img alt="" src={logo} className=" w-24 h-auto" />
           </Link>
-          <div className="flex flex-row justify-between gap-8 text-xl">
-            <Link
-              to="/about"
-              className="text-[#065471] hover:text-[#053E53] hover:font-bold"
-            >
-              About
-            </Link>
-
-            <Link className="text-[#065471] hover:text-[#053E53] hover:font-bold">
-              profile
-            </Link>
-            {isLoggedIn && (
-              <button
-                onClick={handleLogout}
-                className="block w-full px-4 py-2 text-left text-sm text-[#000000] data-[focus]:bg-[#efe8db]"
-              >
-                Cerrar Sesión
-              </button>
-            )}
+        </div>
+        <div className="flex items-center space-x-4">
+          <div className="text-[#E46D45] font-medium">Hi, {loggerUserName}</div>
+          <div className=" w-8 h-8 rounded-full flex items-center justify-center ">
+            <img alt="" src={user} className=" w-24 h-auto" />
           </div>
         </div>
       </nav>

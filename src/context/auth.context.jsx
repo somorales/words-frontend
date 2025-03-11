@@ -7,6 +7,8 @@ function AuthWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUserId, setLoggedUserId] = useState(null);
   const [isValidatingToken, setIsValidatingToken] = useState(true);
+  //estado que creo para compartir
+  const [loggerUserName, setLoggerUserName] = useState("");
 
   useEffect(() => {
     authenticateUser();
@@ -21,11 +23,13 @@ function AuthWrapper(props) {
       setIsLoggedIn(true);
       setLoggedUserId(response.data._id);
       setIsValidatingToken(false);
+      setLoggerUserName(response.data.name);
     } catch (error) {
       console.log(error);
       setIsLoggedIn(false);
       setLoggedUserId(null);
       setIsValidatingToken(false);
+      setLoggerUserName("");
     }
   };
 
@@ -33,6 +37,7 @@ function AuthWrapper(props) {
     isLoggedIn,
     loggedUserId,
     authenticateUser,
+    loggerUserName,
   };
 
   return (
