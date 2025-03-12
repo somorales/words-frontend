@@ -17,11 +17,11 @@ export default function NavBar() {
   };
   return (
     <header>
-      <nav className="bg-white px-8 py-8 flex justify-between items-center">
+      <nav className="bg-white px-6 py-6 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/">
             <span className="sr-only">logo</span>
-            <img alt="" src={logo} className=" w-24 h-auto" />
+            <img alt="" src={logo} className=" w-[4.5rem] h-auto" />
           </Link>
         </div>
         <div className="flex items-center space-x-4">

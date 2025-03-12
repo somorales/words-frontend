@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import service from "../services/config.js";
 import { useNavigate } from "react-router-dom";
+import sentences from "../assets/images/sentences.png";
 
 export default function WordPage() {
   const params = useParams();
@@ -38,62 +39,60 @@ export default function WordPage() {
   };
 
   return (
-    <div className="bg-[#EDE9D8]">
-      <div className="lg:py-6">
-        <div className="p-6">
-          <div className="mt-4">
-            <div className="lg:col-span-2 lg:pr-8">
-              <h1 className="text-2xl font-bold tracking-tight text-[#000000] sm:text-3xl">
-                {word.word}
-              </h1>
-            </div>
+    <div>
+      <div className="pt-2 pl-6 pr-6 pb-8">
+        <div className="lg:pb-6 lg:pr-8 lg:pt-6">
+          <div className="lg:col-span-2 lg:pr-8">
+            <h1 className="text-3xl font-bold tracking-tight text-[#47307D]">
+              {word.word}
+            </h1>
           </div>
-          <div className="mt-4 lg:row-span-3 lg:mt-0">
-            <p className="text-xl tracking-tight text-[#000000]">
+
+          <div className="mt-2 lg:row-span-3 lg:mt-0">
+            <p className="text-xl tracking-tight text-[#0A0320]">
               {word.meaning}
             </p>
           </div>
+        </div>
 
-          <div className="py-6 lg:pb-6 lg:pr-8 lg:pt-6">
-            <div>
-              <h3 className="text-xl font-medium text-[#000000]">Traduccion</h3>
-              <div className="space-y-6">
-                <p className="text-sm text-[#000000]">{word.translation}</p>
-              </div>
+        <div className="py-8 lg:pb-6 lg:pr-8 lg:pt-6">
+          <div>
+            <h3 className="text-2xl font-semibold text-[#4D3E7F]">
+              Translated to Spanish
+            </h3>
+            <div className="mt-2 lg:row-span-3 lg:mt-0">
+              <p className="text-xl tracking-tight text-[#0A0320]">
+                {word.translation}
+              </p>
             </div>
           </div>
+        </div>
 
-          <div className="lg:col-span-2 lg:pr-8">
-            <h1 className="text-2xl font-bold tracking-tight text-[#000000] sm:text-3xl">
-              Tus Oraciones
-            </h1>
-            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-              {allSentences.map((sentence, index) => (
-                <div
-                  key={index}
-                  className="p-4 border rounded-md shadow-md bg-white"
-                >
-                  <p className="text-base font-medium text-[#000000]">
-                    {sentence}
-                  </p>
-                </div>
-              ))}
-            </div>
+        <img src={sentences} className="w-64 h-auto" />
 
-            <button
-              onClick={() => navigate(`/words/${word._id}/edit`)}
-              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#c07c53] px-8 py-3 text-base font-semibold text-[#efe8db] hover:bg-[#D68C60] focus:outline-none focus:ring-2 focus:ring-[#c07c53] focus:ring-offset-2"
-            >
-              Editar
-            </button>
-
-            <button
-              onClick={handleDelete}
-              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent  px-8 py-3 text-base font-medium text-[#c07c53] hover:bg-[#d2ccb4] focus:outline-none focus:ring-2 focus:ring-[#c07c53] focus:ring-offset-2"
-            >
-              Borrar Palabra
-            </button>
+        {allSentences.map((sentence, index) => (
+          <div
+            key={index}
+            className="bg-white border-2 border-purple-200 rounded-xl p-4 mb-4 shadow-md shadow[#4D3E7F] h-[5.125rem] "
+          >
+            <p className="text-base font-medium text-[#000000]">{sentence}</p>
           </div>
+        ))}
+
+        <div className="space-y-3">
+          <button
+            onClick={() => navigate(`/words/${word._id}/edit`)}
+            className=" mt-8 w-full bg-[#4D3E7F] text-white py-2 rounded-full text-base font-medium hover:bg-[#47307D] transition"
+          >
+            Edit word
+          </button>
+
+          <button
+            onClick={handleDelete}
+            className="flex w-full items-center justify-center rounded-md border border-transparent  px-8 py-3 text-base font-medium text-[#4D3E7F] "
+          >
+            Delete word
+          </button>
         </div>
       </div>
     </div>
