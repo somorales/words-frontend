@@ -146,7 +146,7 @@ export default function CreateWordPage() {
               onClick={addSentence}
               className=" flex bg-[#A28DE7] justify-center border-2 border-[#A28DE7] text-base  text-white rounded-xl p-6 mb-4 shadow-md shadow[#4D3E7F] h-[5.125rem] w-full"
             >
-              <img src={plus} className="w-6 h-6 pr-2" />
+              <img src={plus} className="w-8 h-6  pr-2" />
               Create sentence
             </button>
           </div>
