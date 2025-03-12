@@ -73,7 +73,7 @@ export default function WordPage() {
         {allSentences.map((sentence, index) => (
           <div
             key={index}
-            className="bg-white border-2 border-purple-200 rounded-xl p-4 mb-4 shadow-md shadow[#4D3E7F] h-[5.125rem] "
+            className="bg-white border-2 border-[#A28DE7] rounded-xl p-4 mb-4 shadow-md shadow[#4D3E7F] h-[5.125rem] "
           >
             <p className="text-base font-medium text-[#000000]">{sentence}</p>
           </div>
