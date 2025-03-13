@@ -11,24 +11,31 @@ import arrow from "../assets/images/flecha.png";
 export default function HomePage() {
   const [allWords, setAllWords] = useState([]);
   const [userHandleSearchWord, setUserHandleSearchWord] = useState(false);
-  useEffect(() => {
-    service
-      .get(`/words`)
-      .then((response) => {
-        console.log(response);
-        setAllWords(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const [hasMore, setHasMore] = useState(false);
+  const [nextCursor, setNextCursor] = useState(null);
+  const [userSearchText, setUserSearchText] = useState(null);
 
-  const handleSearchWord = (text) => {
+  const loadPage = (text, cursor) => {
+    let urlParams = new URLSearchParams();
+
+    if (text) {
+      urlParams.append("word", text);
+    }
+
+    if (cursor) {
+      urlParams.append("cursor", cursor);
+    }
+
+    let url = `/words?${urlParams.toString()}`;
+
     service
-      .get(`/words?word=${text}`)
+      .get(url)
       .then((response) => {
-        setAllWords(response.data);
-        if (text.length > 0) {
+        setAllWords(response.data.allWords);
+        setHasMore(response.data.hasMore);
+        setNextCursor(response.data.nextCursor);
+
+        if (text && text.length > 0) {
           setUserHandleSearchWord(true);
         } else {
           setUserHandleSearchWord(false);
@@ -38,9 +45,14 @@ export default function HomePage() {
         console.log(err);
       });
   };
-  const handleTextToSpeech = (e, text) => {
-    e.preventDefault();
-    e.stopPropagation();
+
+  useEffect(() => {
+    loadPage(null, null);
+  }, []);
+
+  const handleSearchWord = (text) => {
+    setUserSearchText(text);
+    loadPage(text, null);
   };
 
   return (
@@ -126,6 +138,24 @@ export default function HomePage() {
               </div>
             </>
           )}
+          <div className="flex flex-row justify-end gap-4  pt-4  ">
+            <button
+              className="w-16 h-16  border-[#4D3E7F] border-2  rounded-full flex items-center justify-center text-white "
+              aria-label="Previous"
+            >
+              <div className="w-3 h-3 border-t-2 border-r-2 border-[#4D3E7F] transform rotate-[225deg] translate-x-[-2px]"></div>
+            </button>
+
+            {hasMore === true && (
+              <button
+                className="w-16 h-16 bg-[#4D3E7F] rounded-full flex items-center justify-center text-white "
+                aria-label="Next"
+                onClick={() => loadPage(userSearchText, nextCursor)}
+              >
+                <div className="w-3 h-3 border-t-2 border-r-2 border-white transform rotate-45 translate-x-[-2px]"></div>
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
