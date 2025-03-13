@@ -28,11 +28,13 @@ export default function CreateWordPage() {
     setTransalation(value);
   };
   const handleSentencesChange = (index, event) => {
+    event.preventDefault();
     const newSentences = [...sentences];
     newSentences[index] = event.target.value;
     setSentences(newSentences);
   };
-  const addSentence = () => {
+  const addSentence = (e) => {
+    e.preventDefault();
     setSentences([...sentences, ""]);
   };
 
