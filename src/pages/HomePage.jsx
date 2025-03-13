@@ -38,6 +38,10 @@ export default function HomePage() {
         console.log(err);
       });
   };
+  const handleTextToSpeech = (e, text) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
   return (
     <div className="pt-2 pl-6 pr-6 pb-8">
@@ -69,23 +73,35 @@ export default function HomePage() {
         <img src={wordList} className="w-64 h-auto" />
         <div className="space-y-2">
           {allWords.map((word) => (
-            <Link key={word._id} to={`/words/${word._id}`}>
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-100">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-indigo-900 font-medium">{word.word}</h3>
-                    <p className="text-gray-600 text-sm">
-                      It is a common English greeting used to say hi to someone.
-                    </p>
-                  </div>
-                  <div className="text-purple-500">
-                    <TextToSpeech text={word.word} />
+            <div key={word._id} className="relative">
+              <Link to={`/words/${word._id}`}>
+                <div className="bg-white border-2 border-[#A28DE7] rounded-xl p-4 mb-4 shadow-md shadow[#4D3E7F] h-[7rem]">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h3 className="text[#47307D] text-xl font-semibold">
+                        {word.word}
+                      </h3>
+                      <p className="text-gray-500 fond-medium text-sm py-2">
+                        {word.meaning}
+                      </p>
+                    </div>
+                    {/* Empty div to maintain spacing */}
+                    <div className="w-10"></div>
                   </div>
                 </div>
+              </Link>
+              {/* Text-to-speech component outside the Link */}
+              <div
+                className="absolute top-4 right-4 z-10"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <TextToSpeech
+                  text={word.word}
+                  className=" duration-200 flex items-center justify-center w-8 h-8 rounded-full bg-white shadow-sm"
+                />
               </div>
-            </Link>
+            </div>
           ))}
-
           {/* If there are no words yet, show at least the "Hello" example from the image */}
           {allWords.length === 0 && (
             <>

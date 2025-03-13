@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import speech from "../assets/images/speech.png";
 
 export default function TextToSpeech(props) {
   const [voices, setVoices] = useState([]);
@@ -55,12 +56,9 @@ export default function TextToSpeech(props) {
   };
 
   return (
-    <div className="flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-md">
-      <button
-        onClick={speakText}
-        className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-      >
-        🔊 Speak
+    <div>
+      <button onClick={speakText}>
+        <img src={speech} className="w-[1.8rem] h-auto" />
       </button>
     </div>
   );
