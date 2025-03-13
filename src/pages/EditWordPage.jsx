@@ -135,7 +135,7 @@ export default function EditWordPage() {
           </div>
 
           <div>
-            <div className="mt-2">
+            <div className="mt-4">
               <textarea
                 onChange={handleMeaningChange}
                 value={meaning}
@@ -144,7 +144,7 @@ export default function EditWordPage() {
                 name="description"
                 type="text"
                 required
-                className="w-full border-b-2  border-[#E46D45] focus:outline-none py-1 mb-2 text-black placeholder:pt-4 h-[3rem]"
+                className="w-full border-b-2  border-[#E46D45] focus:outline-none py-1 mb-8 text-black placeholder:pt-4 h-[3rem]"
               ></textarea>
             </div>
           </div>
