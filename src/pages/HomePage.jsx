@@ -68,7 +68,6 @@ export default function HomePage() {
         </Link>
       </div>
 
-      {/* Word List Section */}
       <div className="mt-6">
         <img src={wordList} className="w-64 h-auto" />
         <div className="space-y-2">
@@ -85,12 +84,12 @@ export default function HomePage() {
                         {word.meaning}
                       </p>
                     </div>
-                    {/* Empty div to maintain spacing */}
+
                     <div className="w-10"></div>
                   </div>
                 </div>
               </Link>
-              {/* Text-to-speech component outside the Link */}
+
               <div
                 className="absolute top-4 right-4 z-10"
                 onClick={(e) => e.stopPropagation()}
@@ -102,7 +101,7 @@ export default function HomePage() {
               </div>
             </div>
           ))}
-          {/* If there are no words yet, show at least the "Hello" example from the image */}
+
           {allWords.length === 0 && (
             <>
               <div className="flex justify-center items-center">
@@ -132,51 +131,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-/* <div>
-  <div className="text-purple-500">
-            <span role="img" aria-label="speaker">
-              🔊
-            </span>
-          </div>
-      <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="flex flex-col mt-8 lg:grid lg:grid-cols-2">
-          <h1 className="text-3xl text-[#2a3a2d]	font-semibold italic pb-4">
-            Learn words, write sentences, and improve your pronunciation
-          </h1>
-        </div>
-
-        <div className="w-full lg:w-96">
-          <SearchForm
-            placeholder="Buscar Productos..."
-            onSearch={handleSearchWord}
-          />
-        </div>
-
-        <div>
-          <Link
-            to="/words/new"
-            className="bg-[#065471] border-2 border-white rounded-3xl hover:bg-[#FFC045] hover:border-[#065471]  hover:text-[#065471]    px-3.5 py-2.5 shadow-sm w-80 font-bold text-white text-center"
-          >
-            crear palabra
-          </Link>
-        </div>
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {allWords.map((word) => (
-            <Link key={word._id} to={`/words/${word._id}`}>
-              <div>
-                <div className="mt-4 flex justify-between">
-                  <div>
-                    <h3 className="text-base text-[#000000]">{word.word}</h3>
-                    <TextToSpeech text={word.word} />
-                    <p className="mt-1 text-sm text-gray-800">{word.meaning}</p>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-} */
