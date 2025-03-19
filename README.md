@@ -2,7 +2,7 @@
 
 ## [See the App!]()
 
-![lexi Logo](./src/assets/images/lexi-logo.png)
+![lexi Logo](./src/assets/images/logo.png)
 
 ## Description
 
