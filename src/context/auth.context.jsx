@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import service from "../services/config";
+import Loading from "../components/Loading.jsx";
 
 const AuthContext = createContext();
 
@@ -17,9 +18,6 @@ function AuthWrapper(props) {
   const authenticateUser = async () => {
     try {
       const response = await service.get("/auth/verify");
-
-      console.log(response);
-
       setIsLoggedIn(true);
       setLoggedUserId(response.data._id);
       setIsValidatingToken(false);
@@ -39,6 +37,10 @@ function AuthWrapper(props) {
     authenticateUser,
     loggerUserName,
   };
+
+  if (isValidatingToken) {
+    return <Loading />;
+  }
 
   return (
     <AuthContext.Provider value={passedContext}>

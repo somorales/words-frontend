@@ -1,6 +1,6 @@
 # Lexi
 
-## [See the App!]()
+## [See the App!](https://lexi-words.netlify.app)
 
 ![lexi Logo](./src/assets/images/logo.png)
 
@@ -61,7 +61,7 @@ Lexi is an app designed to optimize your language learning in an intuitive and p
 
 [Repository Link Server](https://github.com/somorales/words-backend)
 
-[Deploy Link]()
+[Deploy Link](https://lexi-words.netlify.app/)
 
 ### Model Planning
 
