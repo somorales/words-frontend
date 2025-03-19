@@ -187,7 +187,7 @@ export default function EditWordPage() {
             </div>
             <button
               onClick={addSentence}
-              className=" flex bg-[#A28DE7] justify-center border-2 border-[#A28DE7] text-lg text-base  text-white rounded-xl p-6 mb-4 shadow-md shadow[#4D3E7F] h-[5.125rem] w-full"
+              className=" flex bg-[#A28DE7] justify-center border-2 border-[#A28DE7] text-lg   text-white rounded-xl p-6 mb-4 shadow-md shadow[#4D3E7F] h-[5.125rem] w-full"
             >
               <img src={plus} className="w-8 h-6  pr-2" />
               Create sentence
