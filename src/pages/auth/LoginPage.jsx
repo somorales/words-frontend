@@ -18,7 +18,7 @@ function LoginPage() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 500);
   }, []);
 
   const handleEmailChange = (e) => {
