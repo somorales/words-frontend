@@ -13,6 +13,8 @@ export default function HomePage() {
   const [userHandleSearchWord, setUserHandleSearchWord] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const [nextCursor, setNextCursor] = useState(null);
+  const [hasPrev, setHasPrev] = useState(false);
+  const [prevCursor, setPrevCursor] = useState(null);
   const [userSearchText, setUserSearchText] = useState(null);
 
   const loadPage = (text, cursor) => {
@@ -34,6 +36,8 @@ export default function HomePage() {
         setAllWords(response.data.allWords);
         setHasMore(response.data.hasMore);
         setNextCursor(response.data.nextCursor);
+        setHasPrev(response.data.hasPrev);
+        setPrevCursor(response.data.prevCursor);
 
         if (text && text.length > 0) {
           setUserHandleSearchWord(true);
@@ -141,12 +145,15 @@ export default function HomePage() {
               </>
             )}
             <div className="flex flex-row justify-end gap-4  pt-4  ">
-              <button
-                className="w-16 h-16  border-[#4D3E7F] border-2  rounded-full flex items-center justify-center text-white "
-                aria-label="Previous"
-              >
-                <div className="w-3 h-3 border-t-2 border-r-2 border-[#4D3E7F] transform rotate-[225deg] translate-x-[-2px]"></div>
-              </button>
+              {hasPrev === true && (
+                <button
+                  className="w-16 h-16  border-[#4D3E7F] border-2  rounded-full flex items-center justify-center text-white "
+                  aria-label="Previous"
+                  onClick={() => loadPage(userSearchText, prevCursor)}
+                >
+                  <div className="w-3 h-3 border-t-2 border-r-2 border-[#4D3E7F] transform rotate-[225deg] translate-x-[-2px]"></div>
+                </button>
+              )}
 
               {hasMore === true && (
                 <button
