@@ -139,7 +139,7 @@ export default function EditWordPage() {
               <textarea
                 onChange={handleMeaningChange}
                 value={meaning}
-                placeholder="Que significa"
+                placeholder="What does it mean?"
                 id="description"
                 name="description"
                 type="text"
