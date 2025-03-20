@@ -18,7 +18,7 @@ export default function SearchForm(props) {
       <div className="relative">
         <input
           type="text"
-          className="w-[12.5 rem] py-2 pl-4 pr-10 text-gray-500 bg-white border border-[#E46D45] rounded-full focus:outline-none focus:ring-2 focus:ring-[#F34910] focus:border-transparent"
+          className="w-[12rem] py-2 pl-4 pr-10 text-gray-500 bg-white border border-[#E46D45] rounded-full focus:outline-none focus:ring-2 focus:ring-[#F34910] focus:border-transparent"
           placeholder="search words"
           value={search}
           onChange={handleSearchChange}
